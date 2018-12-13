@@ -89,8 +89,13 @@ public class Main {
     public static void main(String[] args) {
 
         isBigInput = false; // Have to set
+        if (args.length == 0) {
+            isBigInput = false;
+        } else {
+            isBigInput = true;
+            BigInputSize = Integer.valueOf(args[0]);
+        }
         Prepare();
-
         // Iterate for all types of Sorts
         for (SortType = isBigInput ? 1 : 0; SortType < 3; SortType++) {
             for (isParallel = 0; isParallel < 2; isParallel++) {
