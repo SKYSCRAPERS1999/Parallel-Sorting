@@ -1,0 +1,4 @@
+EnumSort Parallel: 
+Average Time after warming of 5 iterations: 254.129 milliseconds
+Minimum Time after warming of 5 iterations: 251.512 milliseconds
+

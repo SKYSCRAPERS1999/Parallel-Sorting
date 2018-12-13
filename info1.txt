@@ -1,0 +1,4 @@
+EnumSort Sequential: 
+Average Time after warming of 5 iterations: 2180.064 milliseconds
+Minimum Time after warming of 5 iterations: 2167.153 milliseconds
+

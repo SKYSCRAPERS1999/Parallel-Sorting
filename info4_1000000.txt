@@ -1,0 +1,4 @@
+QuickSort Parallel: 
+Average Time after warming of 10 iterations: 21.042 milliseconds
+Minimum Time after warming of 10 iterations: 13.161 milliseconds
+

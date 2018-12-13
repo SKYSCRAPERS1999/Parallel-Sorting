@@ -1,0 +1,4 @@
+MergeSort Parallel Complex Too: 
+Average Time after warming of 10 iterations: 48.395 milliseconds
+Minimum Time after warming of 10 iterations: 36.736 milliseconds
+
