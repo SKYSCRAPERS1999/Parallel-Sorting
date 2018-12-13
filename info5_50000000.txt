@@ -1,0 +1,4 @@
+MergeSort Sequential: 
+Average Time after warming of 10 iterations: 10814.834 milliseconds
+Minimum Time after warming of 10 iterations: 7904.425 milliseconds
+
