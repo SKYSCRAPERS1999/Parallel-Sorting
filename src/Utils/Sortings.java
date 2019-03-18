@@ -70,14 +70,39 @@ public class Sortings {
             return inter;
         }
 
+        public static void __put_median(int[] numbers, int l, int r) {
+            int m = l + (r - l) / 2;
+            if (numbers[l] > numbers[r]) swap(numbers, l, r);
+            if (numbers[r] > numbers[m]) swap(numbers, r, m);
+            if (numbers[l] < numbers[r]) swap(numbers, l, r);
+        }
+
+        public static int __partition(int[] numbers, int l, int r, int pivot) {
+//            int i = l - 1, j = r + 1;
+            int i = l - 1, j = r + 1;
+            int pval = numbers[pivot];
+            while (true) {
+                ++i;
+                while (numbers[i] < pval) ++i;
+                --j;
+                while (numbers[j] > pval) --j;
+                if (!(i < j)) return i;
+                swap(numbers, i, j);
+            }
+        }
+
         public static void sort(int[] numbers, int l, int r) {
             if (l < r) {
                 if (r - l < 16) {
                     Sortings.InsertionSort.sort(numbers, l, r);
                 } else {
-                    int m = partition(numbers, l, r);
+                    __put_median(numbers, l, r);
+                    int m = __partition(numbers, l + 1, r, l);
                     sort(numbers, l, m - 1);
-                    sort(numbers, m + 1, r);
+                    sort(numbers, m, r);
+//                    int m = partition(numbers, l, r);
+//                    sort(numbers, l, m - 1);
+//                    sort(numbers, m + 1, r);
                 }
             }
         }

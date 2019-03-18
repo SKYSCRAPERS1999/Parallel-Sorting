@@ -23,9 +23,13 @@ public class QuickSort extends RecursiveAction {
                 if (r - l <= bound) {
                     Sortings.QuickSort.sort(numbers, l, r);
                 } else {
-                    int m = Sortings.QuickSort.partition(numbers, l, r);
+//                    int m = Sortings.QuickSort.partition(numbers, l, r);
+//                    RecursiveAction lSort = new QuickSort(numbers, l, m - 1);
+//                    RecursiveAction rSort = new QuickSort(numbers, m + 1, r);
+                    Sortings.QuickSort.__put_median(numbers, l, r);
+                    int m = Sortings.QuickSort.__partition(numbers, l + 1, r, l);
                     RecursiveAction lSort = new QuickSort(numbers, l, m - 1);
-                    RecursiveAction rSort = new QuickSort(numbers, m + 1, r);
+                    RecursiveAction rSort = new QuickSort(numbers, m, r);
                     invokeAll(lSort, rSort);
                 }
             }

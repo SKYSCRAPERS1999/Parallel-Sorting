@@ -95,36 +95,56 @@ public class Main {
             BigInputSize = Integer.valueOf(args[0]);
         }
         Prepare();
-        // Iterate for all types of Sorts
-        for (SortType = isBigInput ? 1 : 0; SortType < 3; SortType++) {
-            for (isParallel = 0; isParallel < 2; isParallel++) {
-                for (ParallelType = 0; ParallelType < 1 + 2 * (SortType == 2 && isParallel == 1 ? 1 : 0); ParallelType++) {
-                    SumNanoSecond = 0.0;
-                    MinNanoSecond = Double.MAX_VALUE;
+        SumNanoSecond = 0.0;
+        MinNanoSecond = Double.MAX_VALUE;
 
-                    // First Iter iterations WarmUp, then Iter iterations calculate
-                    int Iter = SortType == 0 ? IterNum / 10 : IterNum;
-                    for (int i = 0; i < Iter + Iter; i++) {
-                        new Test(Vec2Arr(vec), false, SortType, isParallel, ParallelType);
-                        if (i >= Iter) {
-                            SumNanoSecond += Test.TestNanoSeconds;
-                            MinNanoSecond = Math.min(MinNanoSecond, Test.TestNanoSeconds);
-                        }
-                        System.out.println();
-                    }
-
-                    int id = 2 * SortType + isParallel + ParallelType + 1;
-
-                    System.out.printf("Above is in %s: %n", MethodNames[id]);
-                    System.out.printf("Average Time after warming of %d iterations: %.3f milliseconds%n",
-                            Iter, (SumNanoSecond / (1.0 * Iter)) / 1000000.0);
-                    System.out.printf("Minimum Time after warming of %d iterations: %.3f milliseconds%n",
-                            Iter, (MinNanoSecond / 1000000.0));
-
-                    OutputToFile(id, Iter);
-                }
+        // First Iter iterations WarmUp, then Iter iterations calculate
+        int Iter = IterNum;
+        for (int i = 0; i < Iter + Iter; i++) {
+            new Test(Vec2Arr(vec), false, 1, 1, 0);
+            if (i >= Iter) {
+                SumNanoSecond += Test.TestNanoSeconds;
+                MinNanoSecond = Math.min(MinNanoSecond, Test.TestNanoSeconds);
             }
+            System.out.println();
         }
+        System.out.printf("Above is in %s: %n", MethodNames[4]);
+        System.out.printf("Average Time after warming of %d iterations: %.3f milliseconds%n",
+                Iter, (SumNanoSecond / (1.0 * Iter)) / 1000000.0);
+        System.out.printf("Minimum Time after warming of %d iterations: %.3f milliseconds%n",
+                Iter, (MinNanoSecond / 1000000.0));
+
+//                    OutputToFile(id, Iter);
+        // Iterate for all types of Sorts
+//        for (SortType = isBigInput ? 1 : 0; SortType < 3; SortType++) {
+//            for (isParallel = 0; isParallel < 2; isParallel++) {
+//                for (ParallelType = 0; ParallelType < 1 + 2 * (SortType == 2 && isParallel == 1 ? 1 : 0); ParallelType++) {
+//                    SumNanoSecond = 0.0;
+//                    MinNanoSecond = Double.MAX_VALUE;
+//
+//                    // First Iter iterations WarmUp, then Iter iterations calculate
+//                    int Iter = SortType == 0 ? IterNum / 10 : IterNum;
+//                    for (int i = 0; i < Iter + Iter; i++) {
+//                        new Test(Vec2Arr(vec), false, SortType, isParallel, ParallelType);
+//                        if (i >= Iter) {
+//                            SumNanoSecond += Test.TestNanoSeconds;
+//                            MinNanoSecond = Math.min(MinNanoSecond, Test.TestNanoSeconds);
+//                        }
+//                        System.out.println();
+//                    }
+//
+//                    int id = 2 * SortType + isParallel + ParallelType + 1;
+//
+//                    System.out.printf("Above is in %s: %n", MethodNames[id]);
+//                    System.out.printf("Average Time after warming of %d iterations: %.3f milliseconds%n",
+//                            Iter, (SumNanoSecond / (1.0 * Iter)) / 1000000.0);
+//                    System.out.printf("Minimum Time after warming of %d iterations: %.3f milliseconds%n",
+//                            Iter, (MinNanoSecond / 1000000.0));
+//
+////                    OutputToFile(id, Iter);
+//                }
+//            }
+//        }
 
     }
 }
